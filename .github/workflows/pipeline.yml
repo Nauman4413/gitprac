@@ -16,8 +16,14 @@ jobs:
           host: ${{ secrets.EC2_HOST }}
           username: ${{ secrets.EC2_USER }}
           key: ${{ secrets.EC2_SSH_KEY }}
+
           script: |
+            set -e
+
             cd /var/www/gitprac
+
             git pull origin staging
+
+            sudo cp index.html /var/www/batch2/index.html
 
             echo "Deployment completed successfully"
